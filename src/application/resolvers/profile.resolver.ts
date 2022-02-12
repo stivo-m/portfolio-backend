@@ -1,5 +1,7 @@
 import { Profile } from "../../domain/schema/profile.schema";
 import { Arg, Field, InputType, Mutation, Query, Resolver } from "type-graphql";
+import { ProfileUseCase } from "../../usecase/profile.usecase";
+import { MongoDB } from "../../infrastructure/repository/mongo.db";
 
 @InputType()
 class UpdateProfileInput {
@@ -21,9 +23,13 @@ class UpdateProfileInput {
 
 @Resolver()
 export class ProfileResolver {
+	constructor(private useCase: ProfileUseCase) {
+		this.useCase = new ProfileUseCase(new MongoDB());
+	}
+
 	@Query(() => Profile, { nullable: true })
 	profile() {
-		return null;
+		return this.useCase.getProfile();
 	}
 
 	@Mutation(() => Profile)

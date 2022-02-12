@@ -1,4 +1,4 @@
-import { Prop } from "@typegoose/typegoose";
+import { getModelForClass, Prop } from "@typegoose/typegoose";
 import { Field, ObjectType } from "type-graphql";
 
 @ObjectType()
@@ -7,22 +7,28 @@ export class Blog {
 	_id: string;
 
 	@Field(() => String)
-	@Prop({ required: true })
-	title: string;
+	@Prop({ required: true, type: String })
+	title: boolean;
 
 	@Field(() => String)
-	@Prop({ required: true })
+	@Prop({ required: true, type: String })
 	slug: string;
 
 	@Field(() => String)
-	@Prop({ required: true })
+	@Prop({ required: true, type: String })
 	body: string;
 
 	@Field(() => String)
-	@Prop({ required: false })
+	@Prop({ required: false, type: String })
 	banner?: string;
 
+	@Field(() => String, { nullable: true, defaultValue: "blog-post" })
+	@Prop({ required: false, type: String })
+	tag?: string;
+
 	@Field(() => Boolean)
-	@Prop({ default: false })
+	@Prop({ default: false, type: Boolean })
 	published?: boolean;
 }
+
+export const BlogModel = getModelForClass<typeof Blog>(Blog);

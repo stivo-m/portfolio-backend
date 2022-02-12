@@ -1,4 +1,4 @@
-import { Prop } from "@typegoose/typegoose";
+import { getModelForClass, Prop } from "@typegoose/typegoose";
 import { Field, ObjectType } from "type-graphql";
 
 @ObjectType()
@@ -7,17 +7,19 @@ export class Profile {
 	_id: string;
 
 	@Field(() => String)
-	@Prop({ required: true })
+	@Prop({ required: true, type: String })
 	name: string;
 
 	@Field(() => String)
-	@Prop({ required: true, unique: true })
+	@Prop({ required: true, unique: true, type: String })
 	email: string;
 
 	@Field(() => String)
-	@Prop({ required: false })
+	@Prop({ required: false, type: String })
 	avatar?: string;
 
-	@Prop({ required: true, unique: true })
+	@Prop({ required: true, unique: true, type: String })
 	password: string;
 }
+
+export const ProfileModel = getModelForClass<typeof Profile>(Profile);
