@@ -3,7 +3,7 @@ import "dotenv/config";
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
-import { resolvers } from "./application/resolvers";
+import { resolvers } from "./presentation/resolvers";
 import {
 	ApolloServerPluginLandingPageGraphQLPlayground,
 	ApolloServerPluginLandingPageProductionDefault,

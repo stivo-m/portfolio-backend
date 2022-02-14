@@ -1,4 +1,4 @@
-import { PostInput } from "../../application/resolvers/blog.resolver";
+import { PostInput } from "../../presentation/resolvers/blog.resolver";
 import { Blog } from "src/domain/schema/blog.schema";
 import { Profile } from "src/domain/schema/profile.schema";
 

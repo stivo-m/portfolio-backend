@@ -1,4 +1,4 @@
-import { PostInput } from "../application/resolvers/blog.resolver";
+import { PostInput } from "../presentation/resolvers/blog.resolver";
 
 import { DBInterface } from "../infrastructure/interfaces/db.interface";
 import { MongoDB } from "../infrastructure/repository/mongo.db";
