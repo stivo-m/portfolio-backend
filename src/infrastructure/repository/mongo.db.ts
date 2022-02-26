@@ -7,10 +7,10 @@ export class MongoDB implements DBInterface {
 	async saveUserProfile(user: Profile): Promise<Profile> {
 		return await ProfileModel.create(user);
 	}
-	async getUserProfile(userID: String): Promise<Profile | null> {
-		return await ProfileModel.findById(userID);
+	async getUserProfile(userID: string): Promise<Profile | null> {
+		return await ProfileModel.findOne({ id: userID });
 	}
-	updateUserProfile(userID: String, updatedProfile: Profile): Profile {
+	updateUserProfile(userID: string, updatedProfile: Profile): Profile {
 		throw new Error("Method not implemented.");
 	}
 	async addPost(post: PostInput): Promise<Blog> {
@@ -19,8 +19,9 @@ export class MongoDB implements DBInterface {
 	updatePost(id: string, post: Blog): Promise<Blog> {
 		throw new Error("Method not implemented.");
 	}
-	deletePost(id: string): boolean {
-		return !!BlogModel.deleteOne({ id });
+	async deletePost(id: string): Promise<boolean> {
+		await BlogModel.deleteOne({ id });
+		return true;
 	}
 	async getPosts(limit?: number): Promise<Blog[] | null> {
 		return await BlogModel.find({});

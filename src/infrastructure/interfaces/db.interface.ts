@@ -11,9 +11,7 @@ export abstract class DBInterface {
 	// posts
 	addPost(post: PostInput) {}
 	updatePost(id: string, post: Blog) {}
-	deletePost(id: string): boolean {
-		return false;
-	}
+	deletePost(id: string) {}
 	getPosts(limit?: number) {}
 	getPost(id?: string) {}
 }

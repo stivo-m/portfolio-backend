@@ -34,11 +34,10 @@ const main = async () => {
 	server.applyMiddleware({ app });
 
 	app.listen({ port: PORT }, () => {
-		// TODO: connect to the database
-		console.log(`Server started on http://localhost:${PORT}/graphql`);
 		mongoose
 			.connect(process.env.MONGODB_URL!, {})
 			.then(() => console.log("Mongo DB connected successfully!"));
+		console.log(`Server started on http://localhost:${PORT}/graphql`);
 	});
 };
 
